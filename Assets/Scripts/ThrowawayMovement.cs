@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,15 @@ public class ThrowawayMovement : MonoBehaviour
 
     [SerializeField] private float _speed = 0;
     [SerializeField] private float _jumpForce = 0;
+
+    private Input _controlls = null;
+
+    private void Awake()
+    {
+        _controlls = new Input();
+        
+       // _controlls.InputPad.Jump.performed
+    }
 
     // Start is called before the first frame update
     void Start()
