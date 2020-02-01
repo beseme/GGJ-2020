@@ -13,17 +13,16 @@ public class PushUp : Actor
 
     new void Awake()
     {
+        base.Awake();
         _control = GetComponent<PlayerController>();
     }
     
-    new void Start(){}
-
     private void FixedUpdate()
     {
         if(_side[0])
-            this.MoveX(_speed * Time.fixedDeltaTime);
-        else if(_side[1])
             this.MoveX(-_speed * Time.fixedDeltaTime);
+        else if(_side[1])
+            this.MoveX(_speed * Time.fixedDeltaTime);
         else if(_side[2])
             this.MoveY(_speed * Time.fixedDeltaTime);
         else if(_side[3])
@@ -32,7 +31,8 @@ public class PushUp : Actor
 
     public void Push(int side)
     {
-        _control.enabled = false;
+        Debug.Log("works");
+        //_control.enabled = false;
         _side[side] = true;
     }
 
@@ -42,6 +42,6 @@ public class PushUp : Actor
         {
             _side[i] = false;
         }
-        _control.enabled = true;
+       // _control.enabled = true;
     }
 }

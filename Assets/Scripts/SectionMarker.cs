@@ -42,7 +42,7 @@ public class SectionMarker : MonoBehaviour
 
     private IEnumerator ReactivateRoutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         _player.GetComponent<PushUp>().Finish();
         _neighbour.SetActive(true);
     }

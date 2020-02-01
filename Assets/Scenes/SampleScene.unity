@@ -1743,6 +1743,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3284945732773938626, guid: 6c8806a875214c04a950058fa38fa6a1,
+        type: 3}
+      propertyPath: _speed
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 823543113173629902, guid: 6c8806a875214c04a950058fa38fa6a1,
         type: 3}
       propertyPath: m_Name
@@ -9706,8 +9711,8 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
-  m_XDamping: 1
-  m_YDamping: 1
+  m_XDamping: 0.5
+  m_YDamping: 0.5
   m_ZDamping: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
@@ -9781,6 +9786,11 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 845750575}
+    - target: {fileID: 322555047755470557, guid: 649e97e8f77964b0e88ea495f1a3068a,
+        type: 3}
+      propertyPath: _id
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6605592697493441522, guid: 649e97e8f77964b0e88ea495f1a3068a,
         type: 3}
       propertyPath: m_LocalPosition.x
