@@ -50,6 +50,8 @@ public class PlayerController : Actor
     private float bufferTimer = 0;
     private float minJumpBuffer = 0;
     private float _stickVal = 0;
+
+    private float _triggerPressed = 0;
     //private SpriteRenderer sprite;
     private Nozzle currentNozzle = 0;
     private Input _controlls = null;
@@ -69,7 +71,8 @@ public class PlayerController : Actor
         _controlls.InputPad.Jump.canceled += Button => killJumpInit();
         _controlls.InputPad.Run.performed += Stick => _stickAxis = Stick.ReadValue<Vector2>();
         _controlls.InputPad.Run.canceled += Stick => _stickAxis = Vector2.zero;
-        _controlls.InputPad.JetPack.performed += Trigger => hover();
+        _controlls.InputPad.JetPack.performed += Trigger => _triggerPressed = Trigger.ReadValue<float>();
+        _controlls.InputPad.JetPack.canceled += Trigger => _triggerPressed = 0;
     }
     new void Start()
     {
@@ -156,6 +159,9 @@ public class PlayerController : Actor
             sprite.color = new Color(255, 0, 255);*/
 
         initSideMovement();
+        
+        if(_triggerPressed == 1)
+            hover();
         
         Debug.Log(fuel);
         // execute input messeges
