@@ -24,8 +24,11 @@ public class ThrowawayMovement : MonoBehaviour
     private void Awake()
     {
         _controlls = new Input();
-        
-       // _controlls.InputPad.Jump.performed
+
+        _controlls.InputPad.Jump.performed += Button => Jumps();
+        _controlls.InputPad.Run.performed += Stick => _stickAxis = Stick.ReadValue<Vector2>();
+        _controlls.InputPad.Run.canceled += Stick => _stickAxis = Vector2.zero;
+        _controlls.InputPad.JetPack.performed += Trigger => Jet();
     }
 
     // Start is called before the first frame update
@@ -43,13 +46,6 @@ public class ThrowawayMovement : MonoBehaviour
         else if (_stickAxis.x < 0)
             _stickVal = -_stickAxis.magnitude;
         else _stickVal = 0;
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-            RunL();
-        if (Input.GetKey(KeyCode.RightArrow))
-            RunR();
-        if (Input.GetKeyDown(KeyCode.Space))
-            Jumps();
     }
 
     private void FixedUpdate()
@@ -67,9 +63,19 @@ public class ThrowawayMovement : MonoBehaviour
 
     void StandStill() => _stickVal = 0;
 
+    void Run()
+    {
+        
+    }
+
     void Jumps()
     {
         //if (_floorHit)
             _rig.AddForce(new Vector2(0, _jumpForce * 80));
-    }    
+    }
+
+    void Jet()
+    {
+        
+    }
 }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEngine;
-using UniRx;
-using UniRx.Triggers;
+//using UniRx;
+//using UniRx.Triggers;
 using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerController : Actor
@@ -45,17 +45,34 @@ public class PlayerController : Actor
     }
 
     private Vector2 movement;
+    private Vector2 _stickAxis = Vector2.zero;
     private PlayerState currentState = PlayerState.moving;
     private Queue<Action> inputMessages = new Queue<Action>();
     private float coyoteTimer = 0;
     private float bufferTimer = 0;
     private float minJumpBuffer = 0;
+    private float _stickVal = 0;
     private SpriteRenderer sprite;
     private Nozzle currentNozzle = 0;
+    private Input _controlls = null;
 
     /* ------------------------------------------------------------------ */
     /* Input Handling */
     /* ------------------------------------------------------------------ */
+
+    private void OnEnable() => _controlls.InputPad.Enable();
+    private void OnDisable() => _controlls.InputPad.Disable();
+    new void Awake()
+    {
+        _controlls = new Input();
+
+        _controlls.InputPad.Jump.performed += Button => initJump();
+        _controlls.InputPad.Jump.canceled += Button => killJumpInit();
+        _controlls.InputPad.Run.performed += Stick => initSideMovement();
+        _controlls.InputPad.Run.performed += Stick => _stickAxis = Stick.ReadValue<Vector2>();
+        _controlls.InputPad.Run.canceled += Stick => _stickAxis = Vector2.zero;
+        _controlls.InputPad.JetPack.performed += Trigger => hover();
+    }
     new void Start()
     {
         // register at actor manager
@@ -68,7 +85,7 @@ public class PlayerController : Actor
         this.sprite = this.GetComponent<SpriteRenderer>();
 
         // observe the jump key
-        var jumpPressedStream = this.UpdateAsObservable()
+        /*var jumpPressedStream = this.UpdateAsObservable()
                                     .Where(_ => Input.GetButtonDown("Jump"))
                                     .Subscribe(initJump);
 
@@ -89,21 +106,22 @@ public class PlayerController : Actor
         this.UpdateAsObservable()
         .Where(_ => Input.GetButtonDown("Switch"))
         .Subscribe(switchNozzle);
+        */
     }
 
-    private void switchNozzle(Unit x)
+   /* private void switchNozzle(Unit x)
     {
         currentNozzle = (Nozzle)(((int)currentNozzle + 1) % 2);
     }
-
-    private void hover(Unit x)
+*/
+    private void hover()
     {
         if (currentNozzle == Nozzle.floating)
             this.inputMessages.Enqueue(doHover);
     }
 
     // initialise jump upon jump input
-    private void initJump(Unit x)
+    private void initJump()
     {
         // if on ground or coyote jump timeframe enabled, send jump message to fixed update
         // otherwise set the buffer for the jump
@@ -115,18 +133,21 @@ public class PlayerController : Actor
             this.inputMessages.Enqueue(initDash);
     }
 
-    private void killJumpInit(Unit x)
+    private void killJumpInit()
     {
         //this.chroma.enabled.value = false;
         inputMessages.Enqueue(killJump);
     }
 
     // initialise the horizontal movement
-    private void initSideMovement(Unit x)
+    private void initSideMovement()
     {
         // send a message to fixed update with the horizontal values
-        this.inputMessages.Enqueue(() => { setMovementX(Input.GetAxisRaw("Horizontal")); });
+        this.inputMessages.Enqueue(() => { setMovementX(_stickVal); });
     }
+
+
+    private void Update() => _stickVal = (_stickAxis.x > 0 ? _stickAxis.magnitude : -_stickAxis.magnitude);
 
     /* ------------------------------------------------------------------ */
     /* Physics Update */

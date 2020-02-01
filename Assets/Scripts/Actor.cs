@@ -179,7 +179,7 @@ public abstract class Actor : MonoBehaviour
                                     .Where(b => b.collider != this.colliderBox);
     }
 
-    /*public virtual bool isRiding(Solid ridable)
+    public virtual bool isRiding(Solid ridable)
     {
         // if we are below the solid, we can't ride it
         if ((this.transform.position.y - this.colliderBox.size.y / 2) <= (ridable.transform.position.y - ridable.GetComponent<BoxCollider2D>().size.y / 2))
@@ -189,7 +189,7 @@ public abstract class Actor : MonoBehaviour
         return checkCollision(new Vector3(0, -2f/pixelsPerUnit, 0))
                 .Where(b => b.transform == ridable.transform)
                 .Count() > 0;
-    }*/
+    }
 
     public virtual void squish() {
         // kill the actor

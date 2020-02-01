@@ -37,4 +37,9 @@ public class ActorManager : MonoBehaviour
     {
         return actors.Where(a => a.isVisible());
     }
+
+    public IEnumerable<Actor> getAllRidingActors(Solid solid)
+    {
+        return actors.Where(a => a.isRiding(solid));
+    }
 }
