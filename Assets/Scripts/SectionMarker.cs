@@ -26,11 +26,13 @@ public class SectionMarker : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>())
         {
-            float playerOffset = 2;
+            float playerOffset = 2.5f;
             if (!_forward)
                 playerOffset = -playerOffset;
             
-            _player.transform.position = new Vector3(transform.position.x + playerOffset, transform.position.y - (transform.localScale.y/2 - .5f));
+            var newLoc = new Vector3(transform.position.x + playerOffset, transform.position.y - (transform.localScale.y/2 - .5f));
+            _player.transform.position = newLoc;
+            _player.GetComponent<Respawn>().SetCheckpoint(newLoc);
             _camera.Scroll(_camLoc, _confinerCollider);
             _neighbour.SetActive(false);
             StartCoroutine(ReactivateRoutine());
