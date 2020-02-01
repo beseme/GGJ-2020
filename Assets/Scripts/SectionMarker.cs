@@ -9,12 +9,20 @@ public class SectionMarker : MonoBehaviour
     [SerializeField] private CameraController _camera = null;
     [SerializeField] private Transform _camLoc = null;
     [SerializeField] private Collider _confinerCollider = null;
-
+    [SerializeField] private GameObject _neighbour = null;
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<ThrowawayMovement>())
         {
             _camera.Scroll(_camLoc, _confinerCollider);
+            _neighbour.SetActive(false);
         }
+    }
+
+    private IEnumerator ReactivateRoutine()
+    {
+        yield return new WaitForSeconds(2f);
+        _neighbour.SetActive(true);
     }
 }
