@@ -15,9 +15,7 @@ public class PlayerController : Actor
     public float fuel = 3f;
     public bool hoverEnabled = false;
     public GameObject postpr;
-
-    private ChromaticAberration chroma;
-
+    
     [Tooltip("Time the Player has to press the Jump Button after falling off an edge")]
     public float coyoteTime = 0.5f;
     [Tooltip("Time the Player has to press the Jump Button before landing")]
@@ -29,7 +27,7 @@ public class PlayerController : Actor
     public GameObject landParticles;
     public GameObject jumpParticles;
     public GameObject hoverParticles;
-    public GameObject dashParticles;
+    //public GameObject dashParticles;
 
     private enum PlayerState
     {
@@ -52,7 +50,7 @@ public class PlayerController : Actor
     private float bufferTimer = 0;
     private float minJumpBuffer = 0;
     private float _stickVal = 0;
-    private SpriteRenderer sprite;
+    //private SpriteRenderer sprite;
     private Nozzle currentNozzle = 0;
     private Input _controlls = null;
 
@@ -64,6 +62,7 @@ public class PlayerController : Actor
     private void OnDisable() => _controlls.InputPad.Disable();
     new void Awake()
     {
+        base.Awake();
         _controlls = new Input();
 
         _controlls.InputPad.Jump.performed += Button => initJump();
@@ -78,11 +77,7 @@ public class PlayerController : Actor
         // register at actor manager
         base.Start();
 
-        PostProcessVolume pv = this.postpr.GetComponent<PostProcessVolume>();
-        pv.profile.TryGetSettings(out chroma);
-        this.chroma.enabled.value = false;
-
-        this.sprite = this.GetComponent<SpriteRenderer>();
+        //this.sprite = this.GetComponent<SpriteRenderer>();
 
         // observe the jump key
         /*var jumpPressedStream = this.UpdateAsObservable()
@@ -154,12 +149,12 @@ public class PlayerController : Actor
     /* ------------------------------------------------------------------ */
     void FixedUpdate()
     {
-        if (fuel <= 0)
+        /*if (fuel <= 0)
             sprite.color = new Color(255, 0, 0);
         else if (currentNozzle == 0)
             sprite.color = new Color(0, 255, 0);
         else
-            sprite.color = new Color(255, 0, 255);
+            sprite.color = new Color(255, 0, 255);*/
 
         Debug.Log(fuel);
         // execute input messeges
@@ -194,7 +189,6 @@ public class PlayerController : Actor
     /* Ground State */
     private void updateMovement()
     {
-        this.chroma.enabled.value = false;
 
         // ensure that the player is always grounded in this state
         if (!grounded)
@@ -304,7 +298,6 @@ public class PlayerController : Actor
         if (this.currentState != PlayerState.falling || this.fuel <= 0)
             return;
 
-        this.chroma.enabled.value = true;
         // reset coyote timer
         this.coyoteTimer = 0;
         this.bufferTimer = 0;
@@ -317,7 +310,6 @@ public class PlayerController : Actor
 
     private void initDash()
     {
-        this.chroma.enabled.value = true;
         if (this.currentState == PlayerState.moving)
             return;
 
@@ -326,7 +318,7 @@ public class PlayerController : Actor
         // calculate amount to move to reach jump hight based on gravity
         var bottomBounds = this.transform.position - new Vector3(0, this.colliderBox.size.y / 2, 0);
         this.movement.y = Mathf.Sqrt(2 * this.dashHeight * Mathf.Abs(Physics2D.gravity.y * this.gravityMultiplier));
-        Instantiate(this.dashParticles, bottomBounds, Quaternion.identity);
+        //Instantiate(this.dashParticles, bottomBounds, Quaternion.identity);
 
         // enable jump state
         this.currentState = PlayerState.jumping;
