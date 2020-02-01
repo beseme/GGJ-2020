@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -7491631149690276875}
   - component: {fileID: 5180779810492104487}
   - component: {fileID: 5275169954620838042}
+  - component: {fileID: -5763070866988569990}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -135,4 +136,24 @@ MonoBehaviour:
     type: 3}
   hoverParticles: {fileID: 5331463809027284879, guid: f4962bbd89999eb41a12edef9e5f663f,
     type: 3}
-  dashParticles: {fileID: 0}
+--- !u!50 &-5763070866988569990
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823543113173629902}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7

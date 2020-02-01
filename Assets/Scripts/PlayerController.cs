@@ -67,7 +67,6 @@ public class PlayerController : Actor
 
         _controlls.InputPad.Jump.performed += Button => initJump();
         _controlls.InputPad.Jump.canceled += Button => killJumpInit();
-        _controlls.InputPad.Run.performed += Stick => initSideMovement();
         _controlls.InputPad.Run.performed += Stick => _stickAxis = Stick.ReadValue<Vector2>();
         _controlls.InputPad.Run.canceled += Stick => _stickAxis = Vector2.zero;
         _controlls.InputPad.JetPack.performed += Trigger => hover();
@@ -156,6 +155,8 @@ public class PlayerController : Actor
         else
             sprite.color = new Color(255, 0, 255);*/
 
+        initSideMovement();
+        
         Debug.Log(fuel);
         // execute input messeges
         this.listenToInput();

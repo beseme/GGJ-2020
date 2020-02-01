@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
 
     private IEnumerator ResetRoutine(Collider confine)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         _vCam.m_Follow = _playerLocation;
         _confiner.m_BoundingVolume = confine;
         _confiner.enabled = true;
