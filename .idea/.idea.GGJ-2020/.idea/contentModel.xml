@@ -12,6 +12,7 @@
           <e p="DestroyParticles.cs" t="Include" />
           <e p="KillPlane.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
+          <e p="PushUp.cs" t="Include" />
           <e p="Respawn.cs" t="Include" />
           <e p="SectionMarker.cs" t="Include" />
           <e p="Solid.cs" t="Include" />

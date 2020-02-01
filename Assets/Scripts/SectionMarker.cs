@@ -6,7 +6,7 @@ using UnityEngine;
 public class SectionMarker : MonoBehaviour
 {
     [SerializeField] private int _id = 0;
-    public int ID => _id;  // 1 is left, 2 right, 3 top, 4 bottom
+    public int ID => _id;  // 0 is left, 1 right, 2 top, 3 bottom
     [SerializeField] private CameraController _camera = null;
     [SerializeField] private Transform _camLoc = null;
     [SerializeField] private Collider _confinerCollider = null;
@@ -31,7 +31,8 @@ public class SectionMarker : MonoBehaviour
                 playerOffset = -playerOffset;
             
             var newLoc = new Vector3(transform.position.x + playerOffset, transform.position.y - (transform.localScale.y/2 - .5f));
-            _player.transform.position = newLoc;
+            //_player.transform.position = newLoc;
+            _player.GetComponent<PushUp>().Push(_id);
             _player.GetComponent<Respawn>().SetCheckpoint(newLoc);
             _camera.Scroll(_camLoc, _confinerCollider);
             _neighbour.SetActive(false);
@@ -42,6 +43,7 @@ public class SectionMarker : MonoBehaviour
     private IEnumerator ReactivateRoutine()
     {
         yield return new WaitForSeconds(2f);
+        _player.GetComponent<PushUp>().Finish();
         _neighbour.SetActive(true);
     }
 }
