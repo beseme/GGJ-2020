@@ -347,6 +347,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SectionMarker
       objectReference: {fileID: 0}
+    - target: {fileID: 7459261600724750744, guid: 649e97e8f77964b0e88ea495f1a3068a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 649e97e8f77964b0e88ea495f1a3068a, type: 3}
 --- !u!1 &217642931 stripped
@@ -551,6 +556,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SectionMarker (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7459261600724750744, guid: 649e97e8f77964b0e88ea495f1a3068a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 649e97e8f77964b0e88ea495f1a3068a, type: 3}
@@ -3724,6 +3734,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.8352337
+      objectReference: {fileID: 0}
+    - target: {fileID: 7459261600724750744, guid: 649e97e8f77964b0e88ea495f1a3068a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 649e97e8f77964b0e88ea495f1a3068a, type: 3}
@@ -11708,6 +11723,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.8352337
+      objectReference: {fileID: 0}
+    - target: {fileID: 7459261600724750744, guid: 649e97e8f77964b0e88ea495f1a3068a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 649e97e8f77964b0e88ea495f1a3068a, type: 3}
