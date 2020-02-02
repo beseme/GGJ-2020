@@ -15,6 +15,7 @@ public class SeedSpawner : MonoBehaviour
     private float _waveCD = 0;
     private float _spawn = 0;
 
+    private bool _spawning = false;
     private void Awake()
     {
         _spawnAmount /= 60;
@@ -25,7 +26,7 @@ public class SeedSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_spawnAmount >= 0)
+        if (_spawning)
         {
             int spawnDirection = Random.Range(1, 2);
             float positiveOffest =
@@ -39,15 +40,21 @@ public class SeedSpawner : MonoBehaviour
                 Instantiate(_seed, (Vector2) _confiner.m_BoundingVolume.bounds.max + Vector2.up * negativeOffest,
                     Quaternion.identity);
 
-            _waveCD = _waveCooldown;
+            _spawn -= Time.deltaTime;
+            if (_spawn <= 0)
+            {
+                _spawning = false;
+                _spawn = _spawnAmount;
+            }
         }
-        else if (_waveCD <= 0)
+        else if (!_spawning)
         {
-            _spawn = _spawnAmount;
+            _waveCD -= Time.deltaTime;
+            if (_waveCD <= 0)
+            {
+                _spawning = true;
+                _waveCD = _waveCooldown;
+            }
         }
-
-        _spawn -= Time.deltaTime;
-        _waveCD -= Time.deltaTime;
-
     }
 }
