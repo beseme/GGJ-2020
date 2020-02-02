@@ -10,6 +10,7 @@
           <e p="ActorManager.cs" t="Include" />
           <e p="CameraController.cs" t="Include" />
           <e p="DestroyParticles.cs" t="Include" />
+          <e p="FixCamera.cs" t="Include" />
           <e p="KillPlane.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="PushUp.cs" t="Include" />

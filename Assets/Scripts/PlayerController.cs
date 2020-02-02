@@ -75,6 +75,7 @@ public class PlayerController : Actor
         _controlls.InputPad.Run.canceled += Stick => _stickAxis = Vector2.zero;
         _controlls.InputPad.JetPack.performed += Trigger => _triggerPressed = Trigger.ReadValue<float>();
         _controlls.InputPad.JetPack.canceled += Trigger => _triggerPressed = 0;
+        
     }
     new void Start()
     {
