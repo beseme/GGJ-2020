@@ -16,8 +16,10 @@
           <e p="PushUp.cs" t="Include" />
           <e p="Respawn.cs" t="Include" />
           <e p="SectionMarker.cs" t="Include" />
+          <e p="SeedSpawner.cs" t="Include" />
           <e p="Solid.cs" t="Include" />
           <e p="ThrowawayMovement.cs" t="Include" />
+          <e p="WhiteGoo.cs" t="Include" />
         </e>
       </e>
       <e p="GGJ-2020.sln" t="IncludeFlat" />
