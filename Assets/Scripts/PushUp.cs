@@ -7,6 +7,8 @@ using System.Linq;
 public class PushUp : Actor
 {
     [SerializeField] private float _speed = 0;
+    [SerializeField] private float _jumpHeight = 0;
+    
     private bool[] _side = {false, false, false, false}; //left 0; right 1; up 2; down 3
     
     private PlayerController _control = null;
@@ -24,7 +26,7 @@ public class PushUp : Actor
         else if(_side[1])
             this.MoveX(_speed * Time.fixedDeltaTime);
         else if(_side[2])
-            this.MoveY(_speed * Time.fixedDeltaTime);
+            this.MoveY(_jumpHeight * Time.fixedDeltaTime);
         else if(_side[3])
             this.MoveY(32 * Physics2D.gravity.y * Time.fixedDeltaTime);
     }
