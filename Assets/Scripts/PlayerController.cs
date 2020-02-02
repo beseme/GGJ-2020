@@ -222,8 +222,8 @@ public class PlayerController : Actor
 
         // execute y movement
         this.MoveY(this.movement.y * Time.fixedDeltaTime);
+        this.checkSurrounding();
 
-        
     }
 
     /* State Machine States */
@@ -350,11 +350,10 @@ public class PlayerController : Actor
         this.coyoteTimer = 0;
         this.bufferTimer = 0;
 
-        var bottomBounds = this.transform.position - new Vector3(0, this.colliderBox.size.y / 2, 0);
-        this.movement.y = 200;
+        var bottomBounds = this.transform.position - new Vector3(0.375f * this.transform.localScale.x, this.colliderBox.size.y / 2, 0);
+        this.movement.y = 100;
         Instantiate(this.hoverParticles, bottomBounds, Quaternion.identity);
         this.fuel -= 5 * Time.fixedDeltaTime;
-        this.checkSurrounding();
     }
 
     private void initDash()
