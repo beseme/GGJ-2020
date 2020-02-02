@@ -75,7 +75,15 @@ public class PlayerController : Actor
         _controlls.InputPad.Run.canceled += Stick => _stickAxis = Vector2.zero;
         _controlls.InputPad.JetPack.performed += Trigger => _triggerPressed = Trigger.ReadValue<float>();
         _controlls.InputPad.JetPack.canceled += Trigger => _triggerPressed = 0;
-        
+
+        _controlls.Keyboard.Jump.performed += Key => initJump();
+        _controlls.Keyboard.Jump.canceled += Key => killJumpInit();
+        _controlls.Keyboard.RunLeft.performed += LKey => _stickVal = -LKey.ReadValue<float>();
+        _controlls.Keyboard.RunLeft.canceled += LKey => _stickVal = 0;
+        _controlls.Keyboard.RunRight.performed += RKey => _stickVal = RKey.ReadValue<float>();
+        _controlls.Keyboard.RunRight.canceled += RKey => _stickVal = 0;
+        _controlls.Keyboard.JetPack.performed += Trigger => _triggerPressed = Trigger.ReadValue<float>();
+        _controlls.Keyboard.JetPack.canceled += Trigger => _triggerPressed = 0;
     }
     new void Start()
     {
