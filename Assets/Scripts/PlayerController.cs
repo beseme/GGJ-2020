@@ -50,6 +50,7 @@ public class PlayerController : Actor
     private float bufferTimer = 0;
     private float minJumpBuffer = 0;
     private float _stickVal = 0;
+    private float _keyPressed = 0;
     private Animator anim;
 
     private float _triggerPressed = 0;
@@ -61,8 +62,17 @@ public class PlayerController : Actor
     /* Input Handling */
     /* ------------------------------------------------------------------ */
 
-    private void OnEnable() => _controlls.InputPad.Enable();
-    private void OnDisable() => _controlls.InputPad.Disable();
+    private void OnEnable()
+    {
+        _controlls.InputPad.Enable();
+        _controlls.Keyboard.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _controlls.InputPad.Disable();
+        _controlls.Keyboard.Disable();
+    }
     new void Awake()
     {
         base.Awake();
@@ -78,10 +88,10 @@ public class PlayerController : Actor
 
         _controlls.Keyboard.Jump.performed += Key => initJump();
         _controlls.Keyboard.Jump.canceled += Key => killJumpInit();
-        _controlls.Keyboard.RunLeft.performed += LKey => _stickVal = -LKey.ReadValue<float>();
-        _controlls.Keyboard.RunLeft.canceled += LKey => _stickVal = 0;
-        _controlls.Keyboard.RunRight.performed += RKey => _stickVal = RKey.ReadValue<float>();
-        _controlls.Keyboard.RunRight.canceled += RKey => _stickVal = 0;
+        _controlls.Keyboard.RunLeft.performed += LKey => _keyPressed = -LKey.ReadValue<float>();
+        _controlls.Keyboard.RunLeft.canceled += LKey => _keyPressed = 0;
+        _controlls.Keyboard.RunRight.performed += RKey => _keyPressed = RKey.ReadValue<float>();
+        _controlls.Keyboard.RunRight.canceled += RKey => _keyPressed = 0;
         _controlls.Keyboard.JetPack.performed += Trigger => _triggerPressed = Trigger.ReadValue<float>();
         _controlls.Keyboard.JetPack.canceled += Trigger => _triggerPressed = 0;
     }
@@ -155,7 +165,15 @@ public class PlayerController : Actor
     }
 
 
-    private void Update() => _stickVal = (_stickAxis.x > 0 ? _stickAxis.magnitude : -_stickAxis.magnitude);
+    private void Update()
+    {
+        if(_keyPressed == 0)
+        _stickVal = (_stickAxis.x > 0 ? _stickAxis.magnitude : -_stickAxis.magnitude);
+        else
+        {
+            _stickVal = _keyPressed;
+        }
+    }
 
     /* ------------------------------------------------------------------ */
     /* Physics Update */
