@@ -50,6 +50,7 @@ public class PlayerController : Actor
     private float bufferTimer = 0;
     private float minJumpBuffer = 0;
     private float _stickVal = 0;
+    private Animator anim;
 
     private float _triggerPressed = 0;
     //private SpriteRenderer sprite;
@@ -65,6 +66,7 @@ public class PlayerController : Actor
     new void Awake()
     {
         base.Awake();
+
         _controlls = new Input();
 
         _controlls.InputPad.Jump.performed += Button => initJump();
@@ -78,7 +80,7 @@ public class PlayerController : Actor
     {
         // register at actor manager
         base.Start();
-
+        this.anim = this.GetComponent<Animator>();
         //this.sprite = this.GetComponent<SpriteRenderer>();
 
         // observe the jump key
@@ -151,6 +153,11 @@ public class PlayerController : Actor
     /* ------------------------------------------------------------------ */
     void FixedUpdate()
     {
+        if (this._stickVal > 0)
+            this.transform.localScale = new Vector3(1, 1, 1);
+        else if (this._stickVal < 0)
+            this.transform.localScale = new Vector3(-1, 1, 1);
+
         /*if (fuel <= 0)
             sprite.color = new Color(255, 0, 0);
         else if (currentNozzle == 0)
@@ -196,10 +203,15 @@ public class PlayerController : Actor
     /* Ground State */
     private void updateMovement()
     {
+        if (Mathf.Abs(_stickVal) > 0.1f)
+            this.anim.SetBool("walking", true);
+        else
+            this.anim.SetBool("walking", false);
 
         // ensure that the player is always grounded in this state
         if (!grounded)
         {
+            this.anim.SetBool("walking", false);
             this.coyoteTimer = this.coyoteTime;
             this.currentState = PlayerState.falling;
         }
@@ -236,6 +248,7 @@ public class PlayerController : Actor
     /* Jumping State */
     private void updateJumping()
     {
+        this.anim.SetBool("jumping", true);
         // apply gravity
         this.applyGravity();
 
@@ -259,6 +272,7 @@ public class PlayerController : Actor
         //this.chroma.enabled.value = false;
         if (this.grounded && this.movement.y <= 0)
         {
+            this.anim.SetBool("jumping", false);
             this.currentState = PlayerState.moving;
             this.fuel = 3f;
 
