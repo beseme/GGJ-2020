@@ -127,15 +127,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45b7e56fd006475f8da682f9c6804c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 80
-  jumpHeight: 48
-  dashHeight: 48
+  speed: 40
+  jumpHeight: 28
+  dashHeight: 24
   fuel: 3
   hoverEnabled: 0
   postpr: {fileID: 0}
-  coyoteTime: 0.5
-  jumpGraceTime: 0.5
-  gravityMultiplier: 32
+  coyoteTime: 0.1
+  jumpGraceTime: 0.1
+  gravityMultiplier: 24
   landParticles: {fileID: 6542141300150126314, guid: 914993c5e2857384cbe11c99998ac520,
     type: 3}
   jumpParticles: {fileID: 2944109025797269613, guid: 15d9f98d8c5369241a4a5b5004fe7f21,
@@ -187,8 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f12d793612a441d5b5a19ab831f1afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 80
-  _jumpHeight: 0
+  _speed: 50
+  _jumpHeight: 220
 --- !u!95 &1630228816410144628
 Animator:
   serializedVersion: 3
@@ -346,7 +346,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -5
+  m_SortingOrder: -1
   m_Sprite: {fileID: -7572447314529008840, guid: c1d48f2e31ea51740adad83ca10f5809,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

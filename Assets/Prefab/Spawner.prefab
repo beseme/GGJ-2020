@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _confiner: {fileID: 0}
-  _seed: {fileID: 0}
+  _seed: {fileID: 2514274350756902628, guid: 85b8518ed11707d4583b964de0101128, type: 3}
   _waveCooldown: 15
-  _spawnAmount: 0
+  _spawnAmount: 100
