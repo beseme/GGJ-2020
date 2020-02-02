@@ -28,7 +28,7 @@ interface IReversible
 public abstract class Actor : MonoBehaviour
 {
     // TO-DO: add pixels per unit to game manager
-    protected const int pixelsPerUnit = 16;
+    protected const int pixelsPerUnit = 8;
     protected float xRemainder = 0;
     protected float yRemainder = 0;
     protected BoxCollider2D colliderBox;
