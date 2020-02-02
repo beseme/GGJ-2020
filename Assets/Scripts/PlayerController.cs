@@ -170,7 +170,7 @@ public class PlayerController : Actor
         if(_triggerPressed == 1)
             hover();
         
-        Debug.Log(fuel);
+        // Debug.Log(fuel);
         // execute input messeges
         this.listenToInput();
 

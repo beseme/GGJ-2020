@@ -7,6 +7,7 @@ public class SectionMarker : MonoBehaviour
 {
     [SerializeField] private int _id = 0;
     public int ID => _id;  // 0 is left, 1 right, 2 top, 3 bottom
+    [SerializeField] private int _cornerIndex; // 0 bottomleft; 1 topleft; 2 bottomright; 3 topleft; --> same as colliderbounds min max
     [SerializeField] private CameraController _camera = null;
     [SerializeField] private Transform _camLoc = null;
     [SerializeField] private Collider _confinerCollider = null;
@@ -18,7 +19,7 @@ public class SectionMarker : MonoBehaviour
         float camOffset = Camera.main.orthographicSize * Camera.main.aspect + .5f;
        if(!_forward)
            camOffset = -camOffset;
-       _camLoc.transform.position = new Vector3(transform.position.x + camOffset, transform.position.y, 0);    
+       //_camLoc.transform.position = new Vector3(transform.position.x + camOffset, transform.position.y, 0);    
     }
     
 
@@ -26,6 +27,7 @@ public class SectionMarker : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>())
         {
+            FindPosition();
             float playerOffset = 2.5f;
             if (!_forward)
                 playerOffset = -playerOffset;
@@ -38,6 +40,29 @@ public class SectionMarker : MonoBehaviour
             _neighbour.SetActive(false);
             StartCoroutine(ReactivateRoutine());
         }
+    }
+
+    void FindPosition()
+    {
+        Vector2[] bounds =
+        {
+            _confinerCollider.bounds.min,
+            new Vector2(_confinerCollider.bounds.min.x, _confinerCollider.bounds.max.x),
+            new Vector2(_confinerCollider.bounds.max.x, _confinerCollider.bounds.min.y),
+            _confinerCollider.bounds.max
+        };
+        
+        Vector2 camSize = new Vector2(Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize);
+
+        Vector2[] camOffset =
+        {
+            camSize,
+            new Vector2(camSize.x, -camSize.y),
+            new Vector2(-camSize.x, camSize.y),
+            -camSize
+        };
+        
+        _camLoc.transform.position = bounds[_cornerIndex] + camOffset[_cornerIndex];
     }
 
     private IEnumerator ReactivateRoutine()
