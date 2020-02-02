@@ -347,6 +347,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SectionMarker
       objectReference: {fileID: 0}
+    - target: {fileID: 7459261600724750744, guid: 649e97e8f77964b0e88ea495f1a3068a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 649e97e8f77964b0e88ea495f1a3068a, type: 3}
 --- !u!1 &217642931 stripped
@@ -552,6 +557,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SectionMarker (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7459261600724750744, guid: 649e97e8f77964b0e88ea495f1a3068a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 649e97e8f77964b0e88ea495f1a3068a, type: 3}
 --- !u!1 &438496206 stripped
@@ -755,7 +765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &540973122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -856,7 +866,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -3724,6 +3734,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.8352337
+      objectReference: {fileID: 0}
+    - target: {fileID: 7459261600724750744, guid: 649e97e8f77964b0e88ea495f1a3068a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 649e97e8f77964b0e88ea495f1a3068a, type: 3}
@@ -11515,11 +11530,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 566872138721415655, guid: a6e2b372a7f084148988310de21ce4fb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7331646157860460908, guid: a6e2b372a7f084148988310de21ce4fb,
         type: 3}
       propertyPath: _confiner
       value: 
       objectReference: {fileID: 2021570507}
+    - target: {fileID: 7331646157860460908, guid: a6e2b372a7f084148988310de21ce4fb,
+        type: 3}
+      propertyPath: _spawnAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8026285274255574928, guid: a6e2b372a7f084148988310de21ce4fb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11699,6 +11724,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.8352337
       objectReference: {fileID: 0}
+    - target: {fileID: 7459261600724750744, guid: 649e97e8f77964b0e88ea495f1a3068a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 649e97e8f77964b0e88ea495f1a3068a, type: 3}
 --- !u!1 &1949357715 stripped
@@ -11852,8 +11882,8 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 0.7122642, b: 0.9231775, a: 1}
+  m_Intensity: 0.2
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
