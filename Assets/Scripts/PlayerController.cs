@@ -333,9 +333,10 @@ public class PlayerController : Actor
         this.bufferTimer = 0;
 
         var bottomBounds = this.transform.position - new Vector3(0, this.colliderBox.size.y / 2, 0);
-        this.movement.y = 300;
+        this.movement.y = 200;
         Instantiate(this.hoverParticles, bottomBounds, Quaternion.identity);
         this.fuel -= 5 * Time.fixedDeltaTime;
+        this.checkSurrounding();
     }
 
     private void initDash()
