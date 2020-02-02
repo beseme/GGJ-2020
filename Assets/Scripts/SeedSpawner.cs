@@ -29,9 +29,9 @@ public class SeedSpawner : MonoBehaviour
         {
             int spawnDirection = Random.Range(1, 2);
             float positiveOffest =
-                Random.Range(_confiner.m_BoundingVolume.bounds.min.y, _confiner.m_BoundingVolume.bounds.max.y);
+                Random.Range(1, _confiner.m_BoundingVolume.bounds.max.y - _confiner.m_BoundingVolume.bounds.min.y);
             float negativeOffest =
-                -Random.Range(_confiner.m_BoundingVolume.bounds.min.y, _confiner.m_BoundingVolume.bounds.max.y);
+                -Random.Range(1, _confiner.m_BoundingVolume.bounds.max.y - _confiner.m_BoundingVolume.bounds.min.y);
             if (spawnDirection == 1)
                 Instantiate(_seed, (Vector2) _confiner.m_BoundingVolume.bounds.min + Vector2.up * positiveOffest,
                     Quaternion.identity);
