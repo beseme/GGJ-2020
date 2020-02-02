@@ -15,7 +15,7 @@ public class SeedSpawner : MonoBehaviour
     private float _waveCD = 0;
     private float _spawn = 0;
 
-    private bool _spawning = false;
+    private bool _spawning = true;
     private void Awake()
     {
         _spawnAmount /= 60;

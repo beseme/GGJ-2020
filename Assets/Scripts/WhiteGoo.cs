@@ -16,8 +16,8 @@ public class WhiteGoo : MonoBehaviour
     void Start()
     {
         _rig = GetComponent<Rigidbody2D>();
-        _speedX = Random.Range(-10f, 10);
-        _speedY = Random.Range(-10f, 10);
+        _speedX = Random.Range(-5f, 5);
+        _speedY = Random.Range(-1f, 1);
     }
     
     private void OnTriggerEnter2D(Collider2D other)
